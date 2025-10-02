@@ -14,7 +14,7 @@ public:
 
 private:
 	Contact _contacts[8];
-	int		_contacts_size;
+	int		_count;
 
 	std::string	getInput( std::string prompt );
 	void		displayData( void ) const;

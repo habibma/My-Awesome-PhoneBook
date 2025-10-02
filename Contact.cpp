@@ -44,3 +44,12 @@ std::string	Contact::get_nickname() const
 {
 	return (_nickname);
 }
+
+int	Contact::get_phonNumber() const
+{
+	return (_phone_number);
+}
+std::string	Contact::get_darkest_secret() const
+{
+	return 	(_darkest_secret);
+}

@@ -5,7 +5,7 @@
 #include "PhoneBook.hpp"
 
 
-PhoneBook::PhoneBook(void) : _contacts_size(0)
+PhoneBook::PhoneBook(void) : _count(0)
 {
 	std::cout << "Constructor PhoneBook called\n";
 }
@@ -48,12 +48,8 @@ void	PhoneBook::add( void )
 	std::string	darkest_secret = getInput("Darkest Secret: ");
 	contact.set_darkest_secret(darkest_secret);
 
-	if (_contacts_size < 8)
-		_contacts[_contacts_size] = contact;
-	else
-		_contacts[0] = contact;
-
-	_contacts_size++;
+	_contacts[_count % 8] = contact;
+	_count++;
 }
 
 void	PhoneBook::printColumn(std::string str) const
@@ -67,7 +63,8 @@ void	PhoneBook::printColumn(std::string str) const
 void	PhoneBook::displayData( void ) const
 {
 
-	for (int i = 0; i < _contacts_size; i++)
+	int size = std::min(_count, 8); // The actual size of the array
+	for (int i = 0; i < size; i++)
 	{
 		std::string firstName =	_contacts[i].get_first_name();
 		std::string lastName =	_contacts[i].get_last_name();
@@ -92,17 +89,23 @@ void	PhoneBook::search( void )
 	std::cout << "Enter the index: ";
 	std::cin >> index;
 
-	if (index >= _contacts_size)
-		std::cout << "There is not a cantact for this index\n";
-
-	for (int i = 0; i < _contacts_size; i++)
+	int size = std::min(_count, 8); // To find out how many contacts are in the array
+	if (index >= size)
 	{
-		std::string firstName =	_contacts[index].get_first_name();
-		std::string lastName =	_contacts[index].get_last_name();
-		std::string nickname =	_contacts[index].get_nickname();
+		std::cout << "There is not a cantact for this index\n";
+		return ;
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		std::string firstName =			_contacts[index].get_first_name();
+		std::string lastName =			_contacts[index].get_last_name();
+		std::string nickname =			_contacts[index].get_nickname();
+		int			phoneNumber =		_contacts[index].get_phonNumber();
+		std::string darkest_secret =	_contacts[index].get_darkest_secret();
 
 		if (i == index)
-			std::cout << firstName << "\n" << lastName << "\n" << nickname << std::endl;
+			std::cout << firstName << "\n" << lastName << "\n" << nickname << "\n" << phoneNumber << "\n" << darkest_secret << std::endl;
 		
 	}
 	std::cout << std::endl;

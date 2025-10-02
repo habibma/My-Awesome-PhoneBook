@@ -24,6 +24,8 @@ public:
 	std::string	get_first_name() const;
 	std::string	get_last_name() const;
 	std::string	get_nickname() const;
+	int			get_phonNumber() const;
+	std::string	get_darkest_secret() const;
 	
 };
 

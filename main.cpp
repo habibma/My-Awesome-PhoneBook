@@ -9,7 +9,7 @@ int	main()
 	std::string prompt;
 	while (1)
 	{
-		std::cout << "ADD to add a contact | SEARCH by index of th entry | EXIT to quit\n";
+		std::cout << "\nADD to add a contact | SEARCH by index of th entry | EXIT to quit\n";
 		std::cin >> prompt;
 
 		if (prompt == "ADD")
